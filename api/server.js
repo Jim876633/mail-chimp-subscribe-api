@@ -28,11 +28,11 @@ async function subscribedEmail(email) {
 
 exports.handler = async (event) => {
   try {
-    if (!event.body?.email) {
-      throw new Error('email is required')
-    }
     if (event.path === '/') {
-      const email = JSON.parse(event.body).email
+      const email = JSON.parse(event.body)?.email
+      if (!email) {
+        throw new Error('email is required')
+      }
       const response = await subscribedEmail(email);
       return {
         statusCode: 200,
