@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "netlify dev"
+    "start": "netlify dev",
+    "deploy": "netlify deploy"
   },
   "keywords": [],
   "author": "",
