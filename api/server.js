@@ -22,12 +22,18 @@ async function subscribedEmail(email) {
     console.log('request error')
     const errorObj = JSON.parse(error.response.text)
     const errorMsg = errorObj.detail
-    return { code: ERROR_CODE, errorMsg }
+    return { code: error.status, errorMsg }
   }
 }
 
 exports.handler = async (event) => {
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    "Access-Control-Allow-Methods": "GET,POST",
+    "Access-Control-Allow-Headers": "Content-Type"
+  }
   try {
+    if (event.httpMethod !== 'POST') throw new Error('Only POST requests allowed')
     if (event.path === '/') {
       const email = JSON.parse(event.body)?.email
       if (!email) {
@@ -36,23 +42,20 @@ exports.handler = async (event) => {
       const response = await subscribedEmail(email);
       return {
         statusCode: 200,
-        headers: {
-          'Content-Type': 'text/html',
-        },
+        headers,
         body: JSON.stringify(response),
       };
     } else {
       return {
         statusCode: 404,
+        headers,
         body: '404 Not Found: ' + event.path,
       }
     }
   } catch (error) {
     return {
       statusCode: 200,
-      headers: {
-        'Content-Type': 'text/html',
-      },
+      headers,
       body: JSON.stringify({ code: ERROR_CODE, errorMsg: error.message }),
     }
   }
