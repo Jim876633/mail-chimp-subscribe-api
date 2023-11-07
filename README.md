@@ -1,6 +1,6 @@
 # Mailchimp Subscribe API
 
-This is a simple frontend application for adding members to a list using the [Mailchimp Subscribe API](https://mailchimp.com/developer/marketing/api/list-members/add-member-to-list/). Users can sign up for your mailing list directly from your website.
+This is a simple API service build with [Netlify](https://www.netlify.com/) for front-end developers, allowing you to add members to a list using the [Mailchimp Subscribe API](https://mailchimp.com/developer/marketing/api/list-members/add-member-to-list/). Users can sign up for your mailing list directly from your website.
 
 ## Getting Started
 
@@ -50,6 +50,30 @@ npm run start
 ```
 
 The project will be available at `http://localhost:8888`.
+
+### 4. Deploy the Project
+
+If you want to deploy the project to Netlify, you have two options:
+
+1. push the project to gitHub and connect your Netlify account to your GitHub account. Then, deploy the project from your GitHub repository.
+
+2. run the following command:
+
+```bash
+npm run deploy
+```
+
+It will need to login to your Netlify account and create a new site for you.
+
+## Usage
+
+To add a member to your Mailchimp audience, send a POST request to the root URL of the project with the following JSON body:
+
+```json
+{
+  "email": "YOUR_EMAIL_ADDRESS"
+}
+```
 
 ## Contributing
 
