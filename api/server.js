@@ -28,7 +28,7 @@ async function subscribedEmail(email) {
 
 exports.handler = async (event) => {
   const headers = {
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': 'https://jimhuang.dev',
     "Access-Control-Allow-Methods": "GET,POST",
     "Access-Control-Allow-Headers": "Content-Type"
   }
